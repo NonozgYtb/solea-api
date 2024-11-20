@@ -1,0 +1,10 @@
+node_modules/
+local-tests/
+.idea
+src
+.github
+tsconfig.json
+.eslintignore
+.eslintrc
+tests
+Makefile

@@ -1,0 +1,24 @@
+cff-version: 0.0.1
+title: Solea API
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: NonozgYtb
+identifiers:
+  - type: url
+    value: >-
+      https://github.com/NonozgYtb/solea-api/releases/tag/0.0.1
+    description: Release v0.0.1 of scolengo-api
+repository-code: 'https://github.com/NonozgYtb/solea-api'
+abstract: Support non officiel de l'API de SOLEA, réseau de transport en commun de l'agglomération de Mulhouse (m2a)
+keywords:
+  - SOLEA
+  - API
+  - Mulhouse
+  - M2A
+license: GPL-3.0-or-later
+version: 0.0.1
+date-released: '2024-12-01'
+license-url: 'https://github.com/NonozgYtb/solea-api/blob/master/LICENSE'
