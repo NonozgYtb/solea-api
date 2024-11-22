@@ -1,4 +1,4 @@
-cff-version: 0.0.1
+cff-version: 1.2.0
 title: Solea API
 message: >-
   If you use this software, please cite it using the
@@ -12,7 +12,9 @@ identifiers:
       https://github.com/NonozgYtb/solea-api/releases/tag/0.0.1
     description: Release v0.0.1 of scolengo-api
 repository-code: 'https://github.com/NonozgYtb/solea-api'
-abstract: Support non officiel de l'API de SOLEA, réseau de transport en commun de l'agglomération de Mulhouse (m2a)
+abstract: >-
+  Support non officiel de l'API de SOLEA, réseau de
+  transport en commun de l'agglomération de Mulhouse (m2a)
 keywords:
   - SOLEA
   - API

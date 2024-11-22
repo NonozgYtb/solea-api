@@ -1,15 +1,43 @@
-<a name="Solea"></a>
+# Solea - API
 
-## Solea
 Support non officiel de l'API de SOLEA, réseau de transport en commun de l'agglomération de Mulhouse (m2a).
+D'autres données annexes sont également récupérées. (Navette centre-ville de Mulhouse)
 
-Ce module permet de récupérer actuellement :
+> [!WARNING]  
+> Ce module n'est pas officiel et n'est pas affilié à SOLEA.
+> Les données récupérées peuvent ne pas être à jour ou incorrectes.
+> De même, les auteurs de ce module ne sont pas responsables de l'utilisation que vous en faites.
+> Enfin, l'API de SOLEA n'est pas documentée et peut changer à tout moment.
+> Afin de ne pas surcharger les serveurs de SOLEA, merci de ne pas abuser de ce module, surtout la fonctionnalité "itinéraire".
+
+Ce module permet de récupérer entre autre :
 - les prochains passages
 - les lignes
 - les arrêts
-- les passages de la navette du centre-ville de Mulhouse
+- le calcul d'itinéraire
+- le trajet de la navette du centre-ville de Mulhouse
+
+&copy; 2024 NonozgYtb
+
+*Avec l'aide et en reprenant la structure d'un projet de : [Maël Gangloff](https://github.com/maelgangloff)*
+
+* * *
+
+Documentation de la classe `Solea` :
+
+<a name="Solea"></a>
+
+## Solea
+Solea-API
+Ce module permet de récupérer entre autre :
+- les prochains passages
+- les lignes
+- les arrêts
+- le calcul d'itinéraire
+- le trajet de la navette du centre-ville de Mulhouse
 
 **Kind**: global class  
+**See**: https://github.com/NonozgYtb/solea-api  
 
 * [Solea](#Solea)
     * [.getArrets()](#Solea.getArrets) ⇒ <code>Promise.&lt;Array.&lt;Arret&gt;&gt;</code>
@@ -22,7 +50,7 @@ Ce module permet de récupérer actuellement :
     * [.listPOI()](#Solea.listPOI) ⇒ <code>Promise.&lt;Array.&lt;POI&gt;&gt;</code>
     * [.searchAddress(query)](#Solea.searchAddress) ⇒ <code>Promise.&lt;Array.&lt;Adresse&gt;&gt;</code>
     * [.searchItineraire(itineraireParams)](#Solea.searchItineraire) ⇒ <code>Promise.&lt;Array.&lt;Itineraire&gt;&gt;</code>
-    * [.getNavetteDatas()](#Solea.getNavetteDatas) ⇒ <code>Promise.&lt;NavetteData&gt;</code>
+    * [.getNavettePath()](#Solea.getNavettePath) ⇒ <code>Promise.&lt;NavetteData&gt;</code>
 
 <a name="Solea.getArrets"></a>
 
@@ -169,12 +197,10 @@ Liste toutes les adresses
 | --- | --- |
 | itineraireParams | Les paramètres de l'itinéraire |
 
-<a name="Solea.getNavetteDatas"></a>
+<a name="Solea.getNavettePath"></a>
 
-### Solea.getNavetteDatas() ⇒ <code>Promise.&lt;NavetteData&gt;</code>
-Récupère les données de l'API de la navette de Mulhouse
-- le tracé de la navette (data)
-- la position de(s) navette(s) si disponible
+### Solea.getNavettePath() ⇒ <code>Promise.&lt;NavetteData&gt;</code>
+Récupère le tracé de la navette de Mulhouse en temps réel
 
 **Kind**: static method of [<code>Solea</code>](#Solea)  
 **Returns**: <code>Promise.&lt;NavetteData&gt;</code> - Les données de la navette  
@@ -182,5 +208,11 @@ Récupère les données de l'API de la navette de Mulhouse
 ```js
 const { Solea } = require('solea-api')
 
-Solea.getNavetteDatas().then((navette)=>console.log("Le tracé actuel en point GPS de la navette :",navette.data))
+Solea.getNavettePath().then((navette)=>console.log("Le tracé actuel en point GPS de la navette :",navette.data))
 ```
+
+* * *
+
+&copy; 2024 NonozgYtb
+
+*Avec l'aide et en reprenant la structure d'un projet de : [Maël Gangloff](https://github.com/maelgangloff)*

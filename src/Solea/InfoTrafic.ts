@@ -4,8 +4,8 @@ export interface InfoTraficImpact {
   arret_libelle: string
   ligne: string
   ligne_libelle: string
-  sae?: number
-  direction?: string
+  sae: number|null
+  direction: string|null
   poteau_supprime: boolean
 }
 

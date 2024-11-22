@@ -43,6 +43,6 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint src/ --ext .ts",
-    "doc": "jsdoc2md -f dist/index.js > README.md"
+    "doc": "jsdoc2md -t readme.template.hbs -f dist/index.js > README.md"
   }
 }

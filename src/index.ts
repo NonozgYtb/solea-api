@@ -12,14 +12,15 @@ import { Passage } from './Solea/PassagesPoteau'
 import { NavetteData } from './Solea/Navette'
 
 /**
- * Support non officiel de l'API de SOLEA, réseau de transport en commun de l'agglomération de Mulhouse (m2a).
- *
- * Ce module permet de récupérer actuellement :
+ * Solea-API
+ * Ce module permet de récupérer entre autre :
  * - les prochains passages
  * - les lignes
  * - les arrêts
- * - les passages de la navette du centre-ville de Mulhouse
+ * - le calcul d'itinéraire
+ * - le trajet de la navette du centre-ville de Mulhouse
  *
+ * @see https://github.com/NonozgYtb/solea-api
  */
 export class Solea {
   /**
