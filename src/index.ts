@@ -1,24 +1,33 @@
 import Axios, { AxiosInstance } from 'axios'
-import { Arret } from './Solea/Arret'
-import { Ligne } from './Solea/Ligne'
-import { Titre } from './Solea/Titre'
-import { POI } from './Solea/POI'
-import { Adresse } from './Solea/Adresse'
-import { Itineraire } from './Solea/ItineraireResult'
-import { ItineraireParams } from './Solea/ItineraireParams'
+import { Arret } from './types/Arret'
+import { Ligne } from './types/Ligne'
+import { Titre } from './types/Titre'
+import { POI } from './types/POI'
+import { Adresse } from './types/Adresse'
+import { Itineraire } from './types/ItineraireResult'
+import { ItineraireParams } from './types/ItineraireParams'
 import qs from 'qs'
-import { InfoTrafic } from './Solea/InfoTrafic'
-import { Passage } from './Solea/PassagesPoteau'
-import { NavetteData } from './Solea/Navette'
+import { InfoTrafic } from './types/InfoTrafic'
+import { Passage } from './types/PassagesPoteau'
+import { NavettePath } from './types/Navette'
 
 /**
  * Solea-API
+ *
  * Ce module permet de récupérer entre autre :
  * - les prochains passages
  * - les lignes
  * - les arrêts
  * - le calcul d'itinéraire
  * - le trajet de la navette du centre-ville de Mulhouse
+ *
+ * **Note :** La position de la navette n'est accessible que via un socket (non websocket) et n'est pas (et ne sera pas) implémentée.
+ * Cependant, une petite doc est disponible pour l'implémentation de cette fonctionnalité. (voir [ici]())
+ * ***
+ *
+ * &copy; 2024 NonozgYtb
+ *
+ * *Avec l'aide et en reprenant la structure d'un projet de : [Maël Gangloff](https://github.com/maelgangloff)*
  *
  * @see https://github.com/NonozgYtb/solea-api
  */
@@ -130,7 +139,7 @@ export class Solea {
   /**
    * Récupère les titres de transport disponibles
    *
-   * @param type Le type de titre à récupérer (tickets ou abonnements ou both pour les deux)
+   * @param {'tickets' | 'abonnements' | 'both'} type Le type de titre à récupérer ('tickets', 'abonnements' ou 'both')
    *
    * @example ```js
    * const { Solea } = require('solea-api')
@@ -215,10 +224,10 @@ export class Solea {
    *
    * Solea.getNavettePath().then((navette)=>console.log("Le tracé actuel en point GPS de la navette :",navette.data))
    * ```
-   * @returns {Promise<NavetteData>} Les données de la navette
+   * @returns {Promise<NavettePath>} Les données de la navette
    */
   public static async getNavettePath() {
-    return Axios.request<NavetteData>({
+    return Axios.request<NavettePath>({
       url: 'http://lanavette.mulhouse.fr/api'
     })
   }

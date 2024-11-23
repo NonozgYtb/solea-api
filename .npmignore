@@ -8,3 +8,5 @@ tsconfig.json
 .eslintrc
 tests
 Makefile
+*.hbs
+tmp/
