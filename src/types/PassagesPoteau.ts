@@ -14,5 +14,5 @@ export interface Passage {
 
 export interface PassagesPoteau {
   info: PassagesInfo
-  passages: Passage[]
+  passages: Passage[] | null
 }

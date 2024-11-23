@@ -36,7 +36,7 @@ Cependant, une petite doc est disponible pour l'implémentation de cette fonctio
 * [Solea](#Solea)
     * [.getArrets()](#Solea.getArrets) ⇒ <code>Promise.&lt;Array.&lt;Arret&gt;&gt;</code>
     * [.getLignes()](#Solea.getLignes) ⇒ <code>Promise.&lt;Array.&lt;Ligne&gt;&gt;</code>
-    * [.getPassages(idPoteau, idLigne, date)](#Solea.getPassages) ⇒ <code>Promise.&lt;Passage&gt;</code>
+    * [.getPassages(idPoteauSae, idLigne, date)](#Solea.getPassages) ⇒ <code>Promise.&lt;Passage&gt;</code>
     * [.getLignePicto(idLigne)](#Solea.getLignePicto) ⇒ <code>Promise.&lt;string&gt;</code>
     * [.getInfosTrafic()](#Solea.getInfosTrafic) ⇒ <code>Promise.&lt;Array.&lt;InfoTrafic&gt;&gt;</code>
     * [.getTitres(type)](#Solea.getTitres) ⇒ <code>Promise.&lt;Array.&lt;Titre&gt;&gt;</code>
@@ -74,7 +74,7 @@ Solea.getLignes().then(lignes => console.log(lignes))
 ```
 <a name="Solea.getPassages"></a>
 
-### Solea.getPassages(idPoteau, idLigne, date) ⇒ <code>Promise.&lt;Passage&gt;</code>
+### Solea.getPassages(idPoteauSae, idLigne, date) ⇒ <code>Promise.&lt;Passage&gt;</code>
 Récupérer les prochains passages à un arrêt en fonction d'une ligne
 
 **Kind**: static method of [<code>Solea</code>](#Solea)  
@@ -82,7 +82,7 @@ Récupérer les prochains passages à un arrêt en fonction d'une ligne
 
 | Param | Description |
 | --- | --- |
-| idPoteau | L'identifiant de l'arrêt |
+| idPoteauSae | L'identifiant de l'arrêt |
 | idLigne | L'identifiant de la ligne |
 | date | La date à laquelle on veut récupérer les passages (par défaut, la date actuelle) |
 

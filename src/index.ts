@@ -58,7 +58,7 @@ export class Solea {
    */
   public static async getLignes() {
     return this.getClient()
-      .request<Ligne[]>({ url: '/reseau/lignes' })
+      .request<Ligne[]>({ url: '/reseau/lignes/' })
       .then((res) => res.data)
   }
 
@@ -76,19 +76,19 @@ export class Solea {
    *   - `idPoteau` correspond à `sae`
    *   - `idLigne` correspond à `ligne`
    *
-   * @param idPoteau L'identifiant de l'arrêt
+   * @param idPoteauSae L'identifiant de l'arrêt
    * @param idLigne L'identifiant de la ligne
    * @param date La date à laquelle on veut récupérer les passages (par défaut, la date actuelle)
    * @returns {Promise<Passage>} Les prochains passages à l'arrêt
    */
   public static async getPassages(
-    idPoteau: number,
+    idPoteauSae: number,
     idLigne: string,
     date = new Date()
   ) {
     return this.getClient()
       .request<Passage>({
-        url: `/reseau/poteau/${idPoteau}/${idLigne}/${Math.floor(
+        url: `/reseau/poteau/${idPoteauSae}/${idLigne}/${Math.floor(
           date.getTime() / 1000
         )}/reel`
       })
