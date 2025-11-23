@@ -36,14 +36,18 @@ Cependant, une petite doc est disponible pour l'implémentation de cette fonctio
 * [Solea](#Solea)
     * [.getArrets()](#Solea.getArrets) ⇒ <code>Promise.&lt;Array.&lt;Arret&gt;&gt;</code>
     * [.getLignes()](#Solea.getLignes) ⇒ <code>Promise.&lt;Array.&lt;Ligne&gt;&gt;</code>
-    * [.getPassages(idPoteauSae, idLigne, date)](#Solea.getPassages) ⇒ <code>Promise.&lt;Passage&gt;</code>
+    * [.getLigne()](#Solea.getLigne) ⇒ <code>Promise.&lt;Array.&lt;LigneDetails&gt;&gt;</code>
+    * [.getFicheHoraire(idPoteauSae, idLigne)](#Solea.getFicheHoraire) ⇒ <code>Promise.&lt;FicheHoraireInitial&gt;</code>
+    * [.getPassages(idPoteauSae, idLigne)](#Solea.getPassages) ⇒ <code>Promise.&lt;PassagesPoteau&gt;</code>
     * [.getLignePicto(idLigne)](#Solea.getLignePicto) ⇒ <code>Promise.&lt;string&gt;</code>
+    * [.getTADZone(idTADZone)](#Solea.getTADZone) ⇒ <code>Promise.&lt;string&gt;</code>
+    * [.getTADZonePicto(idTADZone)](#Solea.getTADZonePicto) ⇒ <code>Promise.&lt;string&gt;</code>
     * [.getInfosTrafic()](#Solea.getInfosTrafic) ⇒ <code>Promise.&lt;Array.&lt;InfoTrafic&gt;&gt;</code>
     * [.getTitres(type)](#Solea.getTitres) ⇒ <code>Promise.&lt;Array.&lt;Titre&gt;&gt;</code>
     * [.searchPOI(query)](#Solea.searchPOI) ⇒ <code>Promise.&lt;Array.&lt;POI&gt;&gt;</code>
     * [.listPOI()](#Solea.listPOI) ⇒ <code>Promise.&lt;Array.&lt;POI&gt;&gt;</code>
     * [.searchAddress(query)](#Solea.searchAddress) ⇒ <code>Promise.&lt;Array.&lt;Adresse&gt;&gt;</code>
-    * [.searchItineraire(itineraireParams)](#Solea.searchItineraire) ⇒ <code>Promise.&lt;Array.&lt;Itineraire&gt;&gt;</code>
+    * [.searchItineraire(itineraireParams)](#Solea.searchItineraire) ⇒ <code>Promise.&lt;ItineraireResult&gt;</code>
     * [.getNavettePath()](#Solea.getNavettePath) ⇒ <code>Promise.&lt;NavettePath&gt;</code>
 
 <a name="Solea.getArrets"></a>
@@ -55,7 +59,7 @@ Lister les arrets du réseau de transport, avec les lignes qui y passent
 **Returns**: <code>Promise.&lt;Array.&lt;Arret&gt;&gt;</code> - Une liste contenant les arrets du réseau  
 **Example**  
 ```js
-const { Solea } = require('solea-api')
+const { Solea } = require('@nonozgytb/solea-api')
 
 Solea.getArrets().then(arrets => console.log(arrets))
 ```
@@ -68,29 +72,66 @@ Lister les lignes du réseau de transport
 **Returns**: <code>Promise.&lt;Array.&lt;Ligne&gt;&gt;</code> - Une liste contenant les lignes du réseau  
 **Example**  
 ```js
-const { Solea } = require('solea-api')
+const { Solea } = require('@nonozgytb/solea-api')
 
 Solea.getLignes().then(lignes => console.log(lignes))
 ```
-<a name="Solea.getPassages"></a>
+<a name="Solea.getLigne"></a>
 
-### Solea.getPassages(idPoteauSae, idLigne, date) ⇒ <code>Promise.&lt;Passage&gt;</code>
-Récupérer les prochains passages à un arrêt en fonction d'une ligne
+### Solea.getLigne() ⇒ <code>Promise.&lt;Array.&lt;LigneDetails&gt;&gt;</code>
+Récupérer une ligne du réseau de transport
 
 **Kind**: static method of [<code>Solea</code>](#Solea)  
-**Returns**: <code>Promise.&lt;Passage&gt;</code> - Les prochains passages à l'arrêt  
+**Returns**: <code>Promise.&lt;Array.&lt;LigneDetails&gt;&gt;</code> - Une liste contenant les lignes du réseau  
+**Example**  
+```js
+const { Solea } = require('@nonozgytb/solea-api')
+
+Solea.getLigne("").then(ligne => console.log(ligne))
+```
+<a name="Solea.getFicheHoraire"></a>
+
+### Solea.getFicheHoraire(idPoteauSae, idLigne) ⇒ <code>Promise.&lt;FicheHoraireInitial&gt;</code>
+Récupérer la fiche horaire d'un arrêt en fonction d'une ligne
+
+**Kind**: static method of [<code>Solea</code>](#Solea)  
+**Returns**: <code>Promise.&lt;FicheHoraireInitial&gt;</code> - La fiche horaire de l'arrêt  
 
 | Param | Description |
 | --- | --- |
 | idPoteauSae | L'identifiant de l'arrêt |
 | idLigne | L'identifiant de la ligne |
-| date | La date à laquelle on veut récupérer les passages (par défaut, la date actuelle) |
 
 **Example**  
 ```js
-const { Solea } = require('solea-api')
+const { Solea } = require('@nonozgytb/solea-api')
 
-Solea.getPassages(271, "C5", new Date())
+Solea.getFicheHoraire(271, "C5")
+    .then(fiche => console.log(fiche))
+```
+Les Champs ìdPoteau et idLigne sont disponibles à partir de `getArrets`.
+
+Pour chaque `lignes` de `getArrets` :
+  - `idPoteau` correspond à `sae`
+  - `idLigne` correspond à `ligne`
+<a name="Solea.getPassages"></a>
+
+### Solea.getPassages(idPoteauSae, idLigne) ⇒ <code>Promise.&lt;PassagesPoteau&gt;</code>
+Récupérer les prochains passages à un arrêt en fonction d'une ligne
+
+**Kind**: static method of [<code>Solea</code>](#Solea)  
+**Returns**: <code>Promise.&lt;PassagesPoteau&gt;</code> - Les prochains passages à l'arrêt  
+
+| Param | Description |
+| --- | --- |
+| idPoteauSae | L'identifiant de l'arrêt |
+| idLigne | L'identifiant de la ligne |
+
+**Example**  
+```js
+const { Solea } = require('@nonozgytb/solea-api')
+
+Solea.getPassages(271, "C5")
     .then(passages => console.log(passages))
 ```
 Les Champs ìdPoteau et idLigne sont disponibles à partir de `getArrets`.
@@ -108,14 +149,52 @@ Récupère le picto d'une ligne
 
 | Param | Description |
 | --- | --- |
-| idLigne | L'identifiant de la ligne (ex: "C5", "94", "14") |
+| idLigne | L'identifiant technique de la ligne (ex: "C5", "94", "14") |
 
 **Example**  
 ```js
-const { Solea } = require('solea-api')
+const { Solea } = require('@nonozgytb/solea-api')
 
 Solea.getLignePicto("C4")
  .then(rawdata => fs.writeFileSync('C4.png', Buffer.from(rawdata, 'base64')))
+```
+<a name="Solea.getTADZone"></a>
+
+### Solea.getTADZone(idTADZone) ⇒ <code>Promise.&lt;string&gt;</code>
+Récupère les informations d'une zone TAD
+
+**Kind**: static method of [<code>Solea</code>](#Solea)  
+**Returns**: <code>Promise.&lt;string&gt;</code> - Le picto de la ligne en PNG (format texte base64)  
+
+| Param | Description |
+| --- | --- |
+| idTADZone | L'identifiant technique de la zone TAD (ex: 1, 106) |
+
+**Example**  
+```js
+const { Solea } = require('@nonozgytb/solea-api')
+
+Solea.getTADZone(106)
+ .then(rawdata => console.log(rawdata))
+```
+<a name="Solea.getTADZonePicto"></a>
+
+### Solea.getTADZonePicto(idTADZone) ⇒ <code>Promise.&lt;string&gt;</code>
+Récupère le picto d'une zone TAD
+
+**Kind**: static method of [<code>Solea</code>](#Solea)  
+**Returns**: <code>Promise.&lt;string&gt;</code> - Le picto de la ligne en PNG (format texte base64)  
+
+| Param | Description |
+| --- | --- |
+| idTADZone | L'identifiant technique de la zone TAD (ex: 1, 106) |
+
+**Example**  
+```js
+const { Solea } = require('@nonozgytb/solea-api')
+
+Solea.getTADZonePicto(106, 96)
+ .then(rawdata => fs.writeFileSync('106.png', Buffer.from(rawdata, 'base64')))
 ```
 <a name="Solea.getInfosTrafic"></a>
 
@@ -126,7 +205,7 @@ Récupère les infos trafic impactants actuellement du réseau
 **Returns**: <code>Promise.&lt;Array.&lt;InfoTrafic&gt;&gt;</code> - Les informations trafic  
 **Example**  
 ```js
-const { Solea } = require('solea-api')
+const { Solea } = require('@nonozgytb/solea-api')
 
 Solea.getInfosTrafic().then((infos)=>console.log(infos))
 ```
@@ -144,7 +223,7 @@ Récupère les titres de transport disponibles
 
 **Example**  
 ```js
-const { Solea } = require('solea-api')
+const { Solea } = require('@nonozgytb/solea-api')
 
 Solea.getTitres('tickets').then((tickets)=>console.log(tickets))
 ```
@@ -181,11 +260,11 @@ Récupère les adresses à partir d'une recherche
 
 <a name="Solea.searchItineraire"></a>
 
-### Solea.searchItineraire(itineraireParams) ⇒ <code>Promise.&lt;Array.&lt;Itineraire&gt;&gt;</code>
+### Solea.searchItineraire(itineraireParams) ⇒ <code>Promise.&lt;ItineraireResult&gt;</code>
 Liste toutes les adresses
 
 **Kind**: static method of [<code>Solea</code>](#Solea)  
-**Returns**: <code>Promise.&lt;Array.&lt;Itineraire&gt;&gt;</code> - Les itinéraires  
+**Returns**: <code>Promise.&lt;ItineraireResult&gt;</code> - Les itinéraires  
 
 | Param | Description |
 | --- | --- |
@@ -200,7 +279,7 @@ Récupère le tracé de la navette de Mulhouse en temps réel
 **Returns**: <code>Promise.&lt;NavettePath&gt;</code> - Les données de la navette  
 **Example**  
 ```js
-const { Solea } = require('solea-api')
+const { Solea } = require('@nonozgytb/solea-api')
 
 Solea.getNavettePath().then((navette)=>console.log("Le tracé actuel en point GPS de la navette :",navette.data))
 ```

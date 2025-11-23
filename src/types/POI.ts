@@ -1,3 +1,5 @@
+import { POILocation } from './ItineraireParams'
+
 export interface POI {
   source: string
   lng: number
@@ -9,5 +11,5 @@ export interface POI {
   description?: string
   icon: string
   cat_id: number
-  geoid: string
+  geoid: POILocation
 }

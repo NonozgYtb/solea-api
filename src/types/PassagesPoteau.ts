@@ -1,6 +1,6 @@
 export interface PassagesInfo {
-  premier: null | `${number}`
-  dernier: null | `${number}`
+  premier: number
+  dernier: number
 }
 
 export interface Passage {
@@ -14,5 +14,5 @@ export interface Passage {
 
 export interface PassagesPoteau {
   info: PassagesInfo
-  passages: Passage[] | null
+  passages?: Passage[]
 }

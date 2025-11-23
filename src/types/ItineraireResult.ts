@@ -16,13 +16,13 @@ export interface Iti {
   action: string
   travaux: string
   travaux_url: string
-  alerte_id?: number
+  alerte_id?: number|null
   label: string
   filea_url: string
   filea_type: string
   ligne_svg: string
   ligne: string
-  sae?: string
+  sae?: string | null
   src: string
 }
 export interface Itineraire {

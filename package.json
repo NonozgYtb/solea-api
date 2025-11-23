@@ -1,6 +1,6 @@
 {
-  "name": "solea-api",
-  "version": "0.0.1",
+  "name": "@NonozgYtb/solea-api",
+  "version": "0.2.0",
   "author": {
     "name": "NonozgYtb"
   },
@@ -14,6 +14,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NonozgYtb/solea-api.git"
+  },
+  "publishConfig": {
+    "@NonozgYtb:registry": "https://npm.pkg.github.com"
   },
   "description": "Support non officiel de l'API de SOLEA, réseau de transport en commun de l'agglomération de Mulhouse (m2a)",
   "keywords": [
@@ -35,13 +38,14 @@
     "@typescript-eslint/parser": "^5.30.3",
     "eslint": "^8.19.0",
     "eslint-plugin-node": "^11.1.0",
-    "jsdoc-to-markdown": "^7.1.1",
+    "jsdoc-to-markdown": "^9.1.3",
     "standard": "^17.0.0",
     "ts-standard": "^11.0.0",
     "tsup": "^8.3.5",
     "typescript": "^4.7.4"
   },
   "scripts": {
+    "test": "exit 0",
     "build": "npx tsup",
     "lint": "eslint src/ --ext .ts",
     "doc": "tsc && jsdoc2md -t md.hbs -f tmp/index.js > README.md",

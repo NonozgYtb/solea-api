@@ -1,20 +1,24 @@
-type GeoLocation = `GP:${number},${number}` // GP:<lat>,<lng>
-type AdresseLocation = `AD:${string}` // AD:<geoid>
-type POILocation = `LI:${number}` // POI:<geoid>
-type ArretLocation = `AR:${string}` // AR:<id>
-type ItineraireLocation =
+export type GeoLocation = `GP:${number | string},${number | string}` // GP:<lat>,<lng>
+export type AdresseLocation = `AD:${string}` // AD:<geoid>
+export type POILocation = `LI:${number | string}` // POI:<geoid>
+export type ArretLocation = `AR:${string}` // AR:<id>
+export type ItineraireLocation =
   | GeoLocation
   | AdresseLocation
   | POILocation
   | ArretLocation
 
+export type DDMMYYYY = `${number | string}/${number | string}/${
+  | number
+  | string}`
+
 export type ItineraireParams = {
   depart: ItineraireLocation
-  arrivee: ItineraireLocation
+  arrive: ItineraireLocation
   type: 'from' | 'to'
-  accessible?: true
-  malvoyant?: true
-  date: `${number}/${number}/${number}` // Format DD/MM/YYYY
+  accessible?: boolean
+  malvoyant?: boolean
+  date: DDMMYYYY // Format DD/MM/YYYY
   h: number
-  m: number
+  mn: number
 }

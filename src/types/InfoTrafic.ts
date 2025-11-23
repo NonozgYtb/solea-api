@@ -4,9 +4,15 @@ export interface InfoTraficImpact {
   arret_libelle: string
   ligne: string
   ligne_libelle: string
-  sae: number|null
-  direction: string|null
+  sae: number | null
+  direction: string | null
   poteau_supprime: boolean
+}
+
+export type InfoTraficLigneImpactee = {
+  code: string
+  libelle: string
+  svg: string
 }
 
 export interface InfoTrafic {
@@ -14,13 +20,20 @@ export interface InfoTrafic {
   alerte: boolean
   titre: string
   accroche: string
-  contenu: string // HTML Escaped
+  /**
+   * HTML escaped content
+   */
+  contenu: string
   rubriqueOrdre: number
   rubrique: string
   dateDebut: string
   dateFin: string
   dateDebutPublication: string
   dateFinPublication: string
-  fichier: any
+  /**
+   * Base URL: https://admin.solea.info/
+   */
+  fichier: null | string
   impacts: InfoTraficImpact[]
+  lignes_impactees: Record<string, InfoTraficLigneImpactee>
 }
