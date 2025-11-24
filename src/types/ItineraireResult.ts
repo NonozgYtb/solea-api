@@ -4,6 +4,7 @@ export interface Summary {
   dep_time: number
   ligne_svg: string
   filea_type: string
+  tad_zone?: string|null
 }
 
 export interface Iti {
