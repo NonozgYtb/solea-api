@@ -1,6 +1,6 @@
 {
-  "name": "@NonozgYtb/solea-api",
-  "version": "0.2.1",
+  "name": "@nonozgytb/solea-api",
+  "version": "0.2.2",
   "author": {
     "name": "NonozgYtb"
   },
@@ -16,7 +16,7 @@
     "url": "git+https://github.com/NonozgYtb/solea-api.git"
   },
   "publishConfig": {
-    "@NonozgYtb:registry": "https://npm.pkg.github.com"
+    "@nonozgytb:registry": "https://npm.pkg.github.com"
   },
   "description": "Support non officiel de l'API de SOLEA, réseau de transport en commun de l'agglomération de Mulhouse (m2a)",
   "keywords": [
