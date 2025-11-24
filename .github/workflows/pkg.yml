@@ -6,20 +6,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - run: npm run all
-
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
