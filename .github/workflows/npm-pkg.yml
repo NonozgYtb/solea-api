@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org/
+          scope: '@nonozgytb'
       - run: npm install
       - run: npm run all
       - run: npm publish --provenance --access public
