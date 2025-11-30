@@ -26,7 +26,7 @@ Ce module permet de récupérer entre autre :
 Cependant, une petite doc est disponible pour l'implémentation de cette fonctionnalité. (voir [ici]())
 ***
 
-&copy; 2024 NonozgYtb
+&copy; 2025 NonozgYtb
 
 *Avec l'aide et en reprenant la structure d'un projet de : [Maël Gangloff](https://github.com/maelgangloff)*
 
