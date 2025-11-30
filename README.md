@@ -293,7 +293,7 @@ Solea.getNavettePath().then((navette)=>console.log("Le tracé actuel en point GP
 *Préambule :*
 > L'utilisateur peut récupérer via l'application Soléa la position de la (des) navette(s) actuellement présente dans le centre ville de Mulhouse.
 > Cela ce fait via un socket utilisé par l'application Android.
-> Etant un socket (ni websocket ni route web http/https), la récupération ne peut pas se faire directement sur une page web. 
+> Etant un socket TCP, la récupération ne peut pas se faire directement sur une page web. 
 > Le processus de récupération des posiitons des navettes est de ce fait complètement différent.
 
 **C'est pour cela que ce module n'inplémente pas (et n'implémentera jamais) la récupération de la position des navettes.**
@@ -302,7 +302,7 @@ Cependant, voici quelques informations pouvant être utiles :
 
 * **Adresse du serveur :** `lanavette.mulhouse.fr`
 * **Port du serveur :** `18099`
-* **Type de socket :** `TCP` (non sécurisé/non WebSocket ni Socket.IO)
+* **Type de socket :** `TCP`
 
 Le type retourné est `NavetteSocketData` :
 ```typescript
@@ -323,6 +323,11 @@ De plus, lors du premier message reçu par le serveur via le socket, il n'y a pa
 (Ex. : `{"5868f5dbf6105d2c":{"id":"5868f5dbf6105d2c","lng":7.332557,"lat":47.747186,"tmstp":1732365820,"old":false}}`)
 
 *Exemple de code pour récupérer les données :*
+
+```bash
+socat STDIO TCP4:lanavette.mulhouse.fr:18099
+```
+
 ```javascript
 const net = require('net')
 const client = new net.Socket()
@@ -345,6 +350,6 @@ setTimeout(() => {
 
 * * *
 
-&copy; 2024 NonozgYtb
+&copy; 2025 NonozgYtb
 
 *Avec l'aide et en reprenant la structure d'un projet de : [Maël Gangloff](https://github.com/maelgangloff)*
