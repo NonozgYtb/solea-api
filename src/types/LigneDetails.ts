@@ -1,26 +1,6 @@
-import { LignePdf } from './Ligne'
+import { Ligne, LignePdf } from './Ligne'
 
-export interface Ligne {
-  id: number
-  code: string
-  size: number
-  name: string
-  color: string
-  type: string
-  tri: number
-  svg: string
-  destination: string
-  accessibleM: boolean
-  code_bdsi: string
-  code_hastop: string
-  chronopro: boolean
-  destination_texte: string
-  colors: string[]
-  reseau: string
-  reseaux: string[]
-  lignes: number[]
-  only_iti: string
-}
+export type LigneDetailsLigne = Omit<Ligne, 'pdfs_hiver' | 'pdfs_ete'>
 
 export interface Horaire {
   max_h: string
@@ -40,7 +20,7 @@ export type LigneDetailsArret = {
   geoid: string
 }
 export type LigneDetails = {
-  ligne: Ligne
+  ligne: LigneDetailsLigne
   horaires: Horaire[]
   directions: string[]
   thermometre: string

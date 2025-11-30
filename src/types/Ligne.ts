@@ -63,6 +63,10 @@ export type Ligne = {
   chronopro: boolean
   thermometre?: string
   /**
+   * Accessible aux personnes à mobilité réduite
+   */
+  accessibleM: boolean
+  /**
    * Liens des pdfs hiver
    */
   pdfs_hiver: LignePdf[]
@@ -74,5 +78,5 @@ export type Ligne = {
    * Internal line id
    */
   lignes: [number]
-  only_iti: '0'
+  only_iti: '0'|'1'
 }
