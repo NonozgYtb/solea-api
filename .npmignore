@@ -10,3 +10,5 @@ tests
 Makefile
 *.hbs
 tmp/
+*.private.*
+*.private
