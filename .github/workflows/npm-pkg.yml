@@ -5,24 +5,23 @@ on:
     types: [published]
   workflow_dispatch:
 
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+
 jobs:
-  build:
-    permissions:
-      contents: read
-      id-token: write
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - run: rm .npmrc || true
-      - run: sed -i 's|https://npm.pkg.github.com|https://registry.npmjs.org/|g' package.json || true
+      - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-          registry-url: https://registry.npmjs.org/
-          # Defaults to the user or organization that owns the workflow file
-          scope: '@nonozgytb'
-      - run: npm install
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      # Ensure npm 11.5.1 or later is installed
+      - name: Update npm
+        run: npm install -g npm@latest
       - run: npm run all
       - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
