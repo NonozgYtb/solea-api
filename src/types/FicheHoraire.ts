@@ -20,7 +20,7 @@ export type FicheHoraire = {
        */
       colortext: string
     }
-    horaire: Record<`${number}`, { m: number; note: string | null }>
+    horaire: Record<`${number}`, { m: number; note: string | null }[]>
   }[]
   notes: {
     [note: string]: string
